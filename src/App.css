@@ -1,38 +1,84 @@
 .App {
+  background-color: rgb(16, 14, 31);
+  color: white;
+  height: 100vh;
+  width: 100%;
+  overflow: auto;
+  margin: 0;
+  position: relative;
+}
+
+.Hidden{
+  display: none;
+}
+.Header {
+  overflow: hidden;
+  height: 5vh;
+  background-color: #333;
+  position: sticky; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+ /* .Header a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
   text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+} 
+
+.Header a:hover {
+  background: #ddd;
+  color: black;
+} */
+
+.logo{
+  width: 44vw;
+  height: 100%;
+}
+.navButtons{
+  height: 100%;
+  width: 56;
+  display: flex;
+  flex-direction: row;
+}
+.MainView{
+  /* display: inline-block; */
+  /* display: flex;
+
+  flex-wrap: wrap;
+  flex-direction: column; */
+  /* justify-content: center;
+  align-items: center; */
+  /* vertical-align: middle; */
+  height: 95vh;
+  width: 100%;
+  text-align: center;
+  position: relative;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.vicChart{
+  font-size: 1px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.chartOptionsMenu{
+
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.ChartField{
+  flex-wrap: wrap;
   display: flex;
   flex-direction: column;
+  text-align: center;
+  flex-direction: row;
+  height: 94vh;
+  width: 100%;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  position: absolute;
 }
