@@ -8,7 +8,7 @@
   position: relative;
 }
 
-.Hidden{
+.Hidden {
   display: none;
 }
 .Header {
@@ -23,54 +23,27 @@
   flex-direction: row;
 }
 
- /* .Header a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-} 
-
-.Header a:hover {
-  background: #ddd;
-  color: black;
-} */
-
-.logo{
+.logo {
   width: 44vw;
   height: 100%;
 }
-.navButtons{
+.navButtons {
   height: 100%;
   width: 56;
   display: flex;
   flex-direction: row;
 }
-.MainView{
-  /* display: inline-block; */
-  /* display: flex;
-
-  flex-wrap: wrap;
-  flex-direction: column; */
-  /* justify-content: center;
-  align-items: center; */
-  /* vertical-align: middle; */
+.MainView {
   height: 95vh;
   width: 100%;
   text-align: center;
   position: relative;
 }
 
-.vicChart{
+.vicChart {
   font-size: 1px;
 }
-
-.chartOptionsMenu{
-
-}
-
-.ChartField{
+.ChartField {
   flex-wrap: wrap;
   display: flex;
   flex-direction: column;
@@ -81,4 +54,47 @@
   display: flex;
   align-items: center;
   position: absolute;
+}
+
+.chartOptionsMenu {
+  width: 33vw;
+  margin: auto;
+}
+
+.sliderFilter {
+  padding: 5px;
+}
+
+::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #222767;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #222767;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #29156f;
+}
+::-webkit-scrollbar-track {
+  background: #310740;
+  border: 0px none #ffffff;
+  border-radius: 100px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #310740;
+}
+::-webkit-scrollbar-track:active {
+  background: #310740;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
 }
