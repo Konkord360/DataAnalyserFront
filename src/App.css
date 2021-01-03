@@ -65,6 +65,48 @@
   padding: 5px;
 }
 
+.container{
+  border: 1px red;
+}
+
+.DropzoneContainer{
+  background-color: #2b3033;
+  border: 2px blue;
+  color:#1890ff
+}
+
+.filesPreview{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.filePreview{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: left;
+  width: 33vw;
+  height: 4vh;
+}
+
+.fileName{
+  display: flex;
+  justify-content: flex-start;
+  width: 80%;
+  align-items: left;
+}
+
+.filePreviewButton{
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  width: 20%;
+}
+
 ::-webkit-scrollbar {
   width: 14px;
   height: 14px;

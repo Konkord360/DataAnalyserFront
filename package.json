@@ -3,22 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@amcharts/amcharts4": "^4.10.11",
-    "@amcharts/amcharts4-fonts": "^4.0.1",
     "@material-ui/core": "^4.11.2",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.1.2",
     "@testing-library/user-event": "^12.2.2",
     "axios": "^0.21.0",
-    "canvasjs": "^1.8.3",
     "highcharts": "^8.2.2",
     "highcharts-react-official": "^3.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-dropzone-uploader": "^2.11.0",
+    "react-dropzone": "^11.2.4",
     "react-scripts": "4.0.0",
-    "recharts": "^1.8.5",
-    "victory": "^35.3.5",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
