@@ -65,17 +65,19 @@
   padding: 5px;
 }
 
-.container{
+.container {
   border: 1px red;
 }
 
-.DropzoneContainer{
+.DropzoneContainer {
   background-color: #2b3033;
   border: 2px blue;
-  color:#1890ff
+  position: absolute;
+  color: #1890ff;
+  z-index: 1;
 }
 
-.filesPreview{
+.filesPreview {
   width: 100%;
   height: 100%;
   display: flex;
@@ -84,7 +86,7 @@
   align-items: center;
 }
 
-.filePreview{
+.filePreview {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -93,14 +95,14 @@
   height: 4vh;
 }
 
-.fileName{
+.fileName {
   display: flex;
   justify-content: flex-start;
   width: 80%;
   align-items: left;
 }
 
-.filePreviewButton{
+.filePreviewButton {
   display: flex;
   justify-content: flex-end;
   flex-direction: row;

@@ -1,0 +1,6 @@
+.WaitWindow{
+    width: 75%;
+    height: 75%;
+    z-index: 100;
+    position: relative;
+}

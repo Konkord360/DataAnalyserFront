@@ -38,7 +38,8 @@ const SliderFilter = ({ updateGraphRange }) => {
         variant="outlined"
         color="primary"
         onClick={() => {
-          /*TODO: ustawienie do pełnego przedziału czujników*/
+          setSliderValue([1, 16]);
+          clickedButton();
         }}
       >
         Reset

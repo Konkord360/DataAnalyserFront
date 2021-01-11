@@ -1,62 +1,78 @@
 import React, { useState } from "react";
-import CanvasJSReact from "./canvasjs.react";
+import HighchartsReact from "highcharts-react-official";
+import SliderFilter from "./SliderFilter";
+import Highcharts from "highcharts";
+import Boost from "highcharts/modules/boost";
+import DarkUnica from "highcharts/themes/dark-unica";
 
-var CanvasJS = CanvasJSReact.CanvasJS;
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+Boost(Highcharts);
+DarkUnica(Highcharts);
+const GraphField = ({ data, isDataFetched }) => {
+  const [graphFilterValues, setGraphFilterValues] = useState([0, 15]);
 
-const GraphField = () => {
-  const [state, setState] = useState("awaiting");
-  var data = [];
-  var data1 = [];
-
-  var options = {
-    theme: "dark2",
-    zoomEnabled: true,
-    title: {
-      text: "Basic Column Chart in React",
-    },
-    axisY: {
-      lineThickness: 1,
-    },
-    data: [
-      {
-        type: "line",
-        dataPoints: data1,
+  const optionsHigh = {
+    plotOptions: {
+      series: {
+        enableMouseTracking: false,
+        marker: {
+          enabled: false,
+        },
+        animation: {
+          enabled: false,
+        },
       },
-    ],
+    },
+    chart: {
+      zoomType: "x",
+      panning: true,
+      panKey: "shift",
+    },
+    boost: {
+      useGPUTranslations: true,
+    },
+    title: {
+      text: "Highcharts drawing many",
+    },
+
+    subtitle: {
+      text: "Using the Boost module",
+    },
+
+    tooltip: {
+      valueDecimals: 2,
+    },
+
+    series: [],
   };
 
-  var options1 = {
-    theme: "dark2",
-    zoomEnabled: true,
-    title: {
-      text: "Basic Column Chart in React",
-    },
-    axisY: {
-      lineThickness: 1,
-    },
-    data: [
-      {
-        type: "line",
-        dataPoints: data,
+  for (
+    let count = graphFilterValues[0];
+    count <= graphFilterValues[1];
+    count++
+  ) {
+    optionsHigh.series.push({
+      data: data[count],
+      dataGrouping: {
+        enabled: true,
       },
-      {
-        type: "line",
-        dataPoints: data1,
-      },
-    ],
-  };
+      pointStart: 0,
+      pintInterval: 10000,
+      lineWidth: 0.5,
+    });
+  }
 
   return (
     <div>
-      <CanvasJSChart
-        options={options}
-        /* onRef = {ref => this.chart = ref} */
-      />
-      <CanvasJSChart
-        options={options1}
-        /* onRef = {ref => this.chart = ref} */
-      />
+      <div className="chartOptionsMenu">
+        <SliderFilter
+          updateGraphRange={(sliderValue) => setGraphFilterValues(sliderValue)}
+        />
+      </div>
+      {isDataFetched ? (
+        <HighchartsReact highcharts={Highcharts} options={optionsHigh} />
+      ) : (
+        <h1>Upload the files with data to see the chart</h1>
+      )}
     </div>
   );
 };

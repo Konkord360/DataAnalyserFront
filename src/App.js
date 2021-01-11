@@ -9,11 +9,11 @@ function App() {
   // const [requireRerender, setRequireRerender] = useState(false);
   const [isLoading, setLoading] = useState(true);
 
-  useEffect(() => {
+  const getData = () => {
     fetch("http://localhost:8080/getFileData")
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
+        console.log("Trying to fetch data");
         data[0] = response.Sensor1;
         data[1] = response.Sensor2;
         data[2] = response.Sensor3;
@@ -35,22 +35,16 @@ function App() {
       .catch((response) => {
         console.log(response);
       });
-  }, []);
+  };
 
-  if (isLoading)
-    return (
-      <div>
-        <h1> fetching data from the server </h1>
-      </div>
-    );
+  // if (isLoading)
+  //   return (
+  //     <div>
+  //       <h1> fetching data from the server </h1>
+  //     </div>
+  //   );
 
-  return (
-    <MainView
-      refetch={() => setRequireFetch(true)}
-      data={data}
-      requireRerender
-    />
-  );
+  return <MainView refetch={getData} data={data} requireRerender />;
 }
 
 export default App;

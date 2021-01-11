@@ -1,11 +1,5 @@
-import React, {
-  render,
-  Fragment,
-  useEffect,
-  useRef,
-  useState,
-  useLayoutEffect,
-} from "react";
+import React, { useEffect, useRef, useState } from "react";
+
 import "./App.css";
 import FileUpload from "./FileUpload";
 import PropTypes from "prop-types";
@@ -15,14 +9,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import Highcharts from "highcharts";
-import HighchartsReact from "highcharts-react-official";
-import SliderFilter from "./SliderFilter";
-import Boost from "highcharts/modules/boost";
-import DarkUnica from "highcharts/themes/dark-unica";
-
-Boost(Highcharts);
-DarkUnica(Highcharts);
+import GraphField from "./GraphField";
 
 const AntTabs = withStyles({
   root: {
@@ -97,10 +84,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const MainView = ({ refetch, data }) => {
-  const [selectedGraph, setSelectedGraph] = useState(1);
+  const [isDataFetched, setIsDataFetched] = useState(false);
   const [isSticky, setSticky] = useState(false);
-  const [graphFilterValues, setGraphFilterValues] = useState([0, 15]);
-  const [redrawGraph, setRedrawGraph] = useState(true);
   const ref = useRef(null);
   const handleScroll = () => {
     if (ref.current) {
@@ -120,57 +105,6 @@ const MainView = ({ refetch, data }) => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  const optionsHigh = {
-    plotOptions: {
-      series: {
-        enableMouseTracking: false,
-        marker: {
-          enabled: false,
-        },
-        animation: {
-          enabled: false,
-        },
-      },
-    },
-    chart: {
-      zoomType: "x",
-      panning: true,
-      panKey: "shift",
-    },
-    boost: {
-      useGPUTranslations: true,
-    },
-    title: {
-      text: "Highcharts drawing many",
-    },
-
-    subtitle: {
-      text: "Using the Boost module",
-    },
-
-    tooltip: {
-      valueDecimals: 2,
-    },
-
-    series: [],
-  };
-
-  for (
-    let count = graphFilterValues[0];
-    count <= graphFilterValues[1];
-    count++
-  ) {
-    optionsHigh.series.push({
-      data: data[count],
-      dataGrouping: {
-        enabled: true,
-      },
-      pointStart: 0,
-      pintInterval: 10000,
-      lineWidth: 0.5,
-    });
-  }
 
   const classes = useStyles();
 
@@ -192,17 +126,15 @@ const MainView = ({ refetch, data }) => {
           </AppBar>
         </div>
         <TabPanel value={value} index={0}>
-          <div className="chartOptionsMenu">
-            <SliderFilter
-              updateGraphRange={(sliderValue) =>
-                setGraphFilterValues(sliderValue)
-              }
-            />
-          </div>
-          <HighchartsReact highcharts={Highcharts} options={optionsHigh} />
+          <GraphField data={data} isDataFetched={isDataFetched} />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <FileUpload refetch={refetch} />
+          <FileUpload
+            refetch={() => {
+              setIsDataFetched(true);
+              refetch();
+            }}
+          />
         </TabPanel>
       </div>
     </div>
