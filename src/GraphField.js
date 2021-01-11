@@ -10,6 +10,7 @@ DarkUnica(Highcharts);
 const GraphField = ({ data, isDataFetched }) => {
   const [graphFilterValues, setGraphFilterValues] = useState([0, 15]);
 
+  
   const optionsHigh = {
     plotOptions: {
       series: {
