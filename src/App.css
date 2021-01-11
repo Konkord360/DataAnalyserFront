@@ -72,7 +72,6 @@
 .DropzoneContainer {
   background-color: #2b3033;
   border: 2px blue;
-  position: absolute;
   color: #1890ff;
   z-index: 1;
 }
