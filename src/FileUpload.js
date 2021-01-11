@@ -31,23 +31,29 @@ const acceptStyle = {
 const rejectStyle = {
   borderColor: "#ff1744",
 };
-const FileUpload = ({ refetch }) => {
+const FileUpload = ({ redraw }) => {
   const [filteredFiles, setFilteredFiles] = useState();
   const [waitingForTheResponse, setWaitingForTheResponse] = useState(false);
 
-  const fileUpload = (file) => {
+  const fileUpload = (files) => {
     const url = "http://localhost:8080/uploadFile";
     const formData = new FormData();
-    formData.append("file", file);
-    console.log(file);
+
+    files.forEach(file =>{
+      formData.append("files", file);
+    })
+    
+    console.log(files);
     const config = {
       method: "POST",
       body: formData,
     };
 
     setWaitingForTheResponse(true);
-    fetch(url, config).then((response) => {
-      refetch();
+    fetch(url, config)
+    .then((response) => response.json())
+    .then((response) => {
+      redraw(response);
       setWaitingForTheResponse(false);
     });
   };
@@ -82,6 +88,12 @@ const FileUpload = ({ refetch }) => {
     setFilteredFiles(files);
   };
 
+  const removeAllFiles = () => {
+    acceptedFiles.splice(0, acceptedFiles.length);
+    files.splice(0, files.length);
+    setFilteredFiles([]);
+  }
+
   const style = useMemo(
     () => ({
       ...baseStyle,
@@ -94,10 +106,9 @@ const FileUpload = ({ refetch }) => {
 
   const uploadFiles = () => {
     if (files.length > 0) {
-      for (let i = 0; i < files.length; i++) {
-        fileUpload(acceptedFiles[i]);
-        remove(i);
-      }
+        fileUpload(acceptedFiles);
+        setFilteredFiles();;
+        removeAllFiles();
     }
   };
 

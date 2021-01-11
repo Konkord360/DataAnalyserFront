@@ -83,7 +83,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MainView = ({ refetch, data }) => {
+let data = [];
+const MainView = () => {
+  
+  // const [redraw, setRedraw] = useState(false);
   const [isDataFetched, setIsDataFetched] = useState(false);
   const [isSticky, setSticky] = useState(false);
   const ref = useRef(null);
@@ -108,6 +111,13 @@ const MainView = ({ refetch, data }) => {
 
   const classes = useStyles();
 
+  const redrawF = (apiResponse) => {
+    console.log(apiResponse);
+    for(let i = 0 ; i < apiResponse.SeriesValues.length; i++)
+      data[i] = apiResponse.SeriesValues[i];
+    setIsDataFetched(true);
+  }
+
   return (
     <div className="App">
       <div className="MainView">
@@ -130,10 +140,7 @@ const MainView = ({ refetch, data }) => {
         </TabPanel>
         <TabPanel value={value} index={1}>
           <FileUpload
-            refetch={() => {
-              setIsDataFetched(true);
-              refetch();
-            }}
+            redraw={redrawF}
           />
         </TabPanel>
       </div>

@@ -13,9 +13,6 @@ const SliderFilter = ({ updateGraphRange }) => {
   function valuetext(value) {
     return `${value}°C`;
   }
-  const clickedButton = () => {
-    updateGraphRange(sliderValue);
-  };
 
   return (
     <div className="sliderFilter">
@@ -31,7 +28,7 @@ const SliderFilter = ({ updateGraphRange }) => {
         min={1}
         max={16}
       />
-      <Button variant="outlined" color="primary" onClick={clickedButton}>
+      <Button variant="outlined" color="primary" onClick={() => updateGraphRange(sliderValue)}>
         Filter sensors
       </Button>
       <Button
@@ -39,7 +36,7 @@ const SliderFilter = ({ updateGraphRange }) => {
         color="primary"
         onClick={() => {
           setSliderValue([1, 16]);
-          clickedButton();
+          updateGraphRange([1,16]);
         }}
       >
         Reset

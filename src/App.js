@@ -44,7 +44,7 @@ function App() {
   //     </div>
   //   );
 
-  return <MainView refetch={getData} data={data} requireRerender />;
+  return <MainView />;
 }
 
 export default App;

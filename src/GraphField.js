@@ -8,7 +8,7 @@ import DarkUnica from "highcharts/themes/dark-unica";
 Boost(Highcharts);
 DarkUnica(Highcharts);
 const GraphField = ({ data, isDataFetched }) => {
-  const [graphFilterValues, setGraphFilterValues] = useState([0, 15]);
+  const [graphFilterValues, setGraphFilterValues] = useState([1, 16]);
 
   
   const optionsHigh = {
@@ -47,8 +47,8 @@ const GraphField = ({ data, isDataFetched }) => {
   };
 
   for (
-    let count = graphFilterValues[0];
-    count <= graphFilterValues[1];
+    let count = graphFilterValues[0] - 1;
+    count < graphFilterValues[1];
     count++
   ) {
     optionsHigh.series.push({
@@ -61,12 +61,19 @@ const GraphField = ({ data, isDataFetched }) => {
       lineWidth: 0.5,
     });
   }
-
   return (
     <div>
       <div className="chartOptionsMenu">
         <SliderFilter
-          updateGraphRange={(sliderValue) => setGraphFilterValues(sliderValue)}
+          updateGraphRange={(sliderValue) => {
+            // if(sliderValue[0] !== graphFilterValues[0] ||
+            //   sliderValue[1] !== graphFilterValues[1]){
+            //   console.log(sliderValue);
+            //   console.log(graphFilterValues);
+              setGraphFilterValues(sliderValue);
+            // }
+          }
+        }
         />
       </div>
       {isDataFetched ? (
