@@ -34,9 +34,7 @@ const rejectStyle = {
 const FileUpload = ({ redraw }) => {
   const [filteredFiles, setFilteredFiles] = useState();
   const [waitingForTheResponse, setWaitingForTheResponse] = useState(false);
-
   const fileUpload = (files) => {
-    const url = "http://localhost:8080/uploadFile";
     const formData = new FormData();
 
     files.forEach(file =>{
@@ -50,7 +48,7 @@ const FileUpload = ({ redraw }) => {
     };
 
     setWaitingForTheResponse(true);
-    fetch(url, config)
+    fetch(process.env.REACT_APP_API_URL, config)
     .then((response) => response.json())
     .then((response) => {
       redraw(response);

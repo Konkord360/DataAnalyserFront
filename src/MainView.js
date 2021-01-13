@@ -83,7 +83,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-let data = [];
+// let data = [[]];
+let data = [{
+  fileName: "",
+  seriesValues: []
+}];
+
 const MainView = () => {
   
   // const [redraw, setRedraw] = useState(false);
@@ -113,8 +118,23 @@ const MainView = () => {
 
   const redrawF = (apiResponse) => {
     console.log(apiResponse);
-    for(let i = 0 ; i < apiResponse.SeriesValues.length; i++)
-      data[i] = apiResponse.SeriesValues[i];
+    console.log(apiResponse.length);
+    for(let i = 0 ; i < apiResponse.length; i++){
+      console.log(apiResponse[i].SeriesValues.length);
+      // for(let j = 0; j < apiResponse[i].length; i++){
+        // data.push({
+        //   fileName: i,
+        //   seriesValues: apiResponse[i].SeriesValues[j]
+        // });
+        // console.log(data[0]);
+        data[i] = {
+          fileName: i,
+          seriesValues: apiResponse[i].SeriesValues
+        }
+       
+      // }
+      console.log(data);
+    }   
     setIsDataFetched(true);
   }
 
